@@ -13,8 +13,8 @@ export default function About() {
       h1Elements.forEach(h1 => h1.classList.add('h1-glitch'))
       setTimeout(() => {
         h1Elements.forEach(h1 => h1.classList.remove('h1-glitch'))
-      }, 3000) // Remove hover effect after 3 seconds
-    }, 10000) // Trigger hover effect every 10 seconds
+      }, 3000)
+    }, 10000)
 
     return () => clearInterval(interval);
   }, []);
@@ -62,7 +62,7 @@ export default function About() {
         </div>
       </motion.section>
 
-      <section className="pt-24">
+      <section className="pt-24 overflow-x-hidden">
         <div className="container mx-auto py-12">
           <div className="relative">
             {/* Longer line at the top with "scroll" text don't touch*/}

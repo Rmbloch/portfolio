@@ -9,10 +9,20 @@ import { motion } from 'framer-motion'
 
 export default function Projects() {
   const [isMounted, setIsMounted] = useState(false)
+  
 
   useEffect(() => {
     setIsMounted(true)
-  }, [])
+    const h1Elements = document.querySelectorAll('h1[data-text]')
+    const interval = setInterval(() => {
+      h1Elements.forEach(h1 => h1.classList.add('h1-glitch'))
+      setTimeout(() => {
+        h1Elements.forEach(h1 => h1.classList.remove('h1-glitch'))
+      }, 3000) 
+    }, 10000)
+
+    return () => clearInterval(interval);
+  }, []);
 
   const projects = [
     {
@@ -26,24 +36,27 @@ export default function Projects() {
       title: "LaterHater Extension",
       description: "Originally called Hate Blocker, LaterHater is a Chrome Extension that uses a natural language model to detect hate speech and block it from a social media feed. This extension was created by me and two other team members for a local Hack-a-thon, and sought to tackle the issue of online hate in social media. As LLMs become more advanced, I plan to revist this project and eventually release it to the public.",
       buttonText: "See Project Github",
-      buttonLink: "https://github.com/Rmbloch/Hate-Blur-Chrome-Extension",
+      buttonLink: "https://github.com/Rmbloch/Hate-Blur-Chrome-Extension ",
       screenImage: "/laterhater.png"
     },
     {
       title: "Portfolio Website",
       description: "I am including this website as a major project, not only because it is recent, but because it was a project which required me to learn a lot of new technologies in order to complete the website. I combined my full-stack experience with unfamiliar technologies such as React and Next.js, to build a visually appealing and responsive website. My goal for this project was to further develope my front-end skills, while also creating a platform to showcase my projects and other information about me.",
       buttonText: "See Code",
-      buttonLink: " ",
+      buttonLink: "https://github.com/Rmbloch/portfolio",
       screenImage: "/website.png"
     }
   ]
 
   return (
-    <section className="bg-white">
-      <div className="container mx-auto px-4">
+    <section className="bg-white pb-12">
+      <div className="flex justify-center pt-20">
+        <h1 className="glitch" data-text="Projects">Projects</h1>
+      </div>
+      <div className="container mx-auto px-4 pt-20 lg:pt-0">
         {projects.map((project, index) => (
-          <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-16 last:mb-0`}>
-            <div className={`w-full md:w-1/2 mb-8 md:mb-0 ${index % 2 === 0 ? " ": "lg:pl-22"}`}>
+          <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}>
+            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? " ": "lg:pl-8"}`}>
               <h2 className="text-3xl text-black font-bold mb-4">
                 <ScrambleText text={project.title} />
               </h2>
@@ -70,7 +83,7 @@ export default function Projects() {
                 </a>
               </motion.button>
             </div>
-            <div className='w-full md:w-1/2 h-64 lg:h-128 xl:h-lvh'>
+            <div className='w-full md:w-1/2 h-64 lg:h-128 xl:h-lvh xl:-mt-40'>
               {isMounted && (
                 <Canvas camera={{ position: [0, 0, 2.3], fov: 55 }}>
                   <ambientLight intensity={20} /> 

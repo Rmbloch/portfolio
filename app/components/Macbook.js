@@ -1,34 +1,31 @@
-import React, { useRef, useEffect } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import React, { useRef, useEffect } from 'react'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 export default function MacBook({ screenImage, facingDirection }) {
-  const group = useRef();
+  const group = useRef()
 
   useEffect(() => {
-    const loader = new GLTFLoader();
-    const textureLoader = new THREE.TextureLoader();
+    const loader = new GLTFLoader()
+    const textureLoader = new THREE.TextureLoader()
 
     loader.load("/macbook_air_m2.glb", (gltf) => {
-      const model = gltf.scene;
+      const model = gltf.scene
 
-      // Load the screen texture
-      const screenTexture = textureLoader.load(screenImage);
-
-      // Traverse the model to find the screen mesh and apply the texture
+      const screenTexture = textureLoader.load(screenImage)
       model.traverse((child) => {
         if (child.isMesh) {
           if (child.name === 'Object_4') {
-            child.material = new THREE.MeshBasicMaterial({ map: screenTexture });
+            child.material = new THREE.MeshBasicMaterial({ map: screenTexture })
           }
         }
       });
 
-      group.current.add(model);
+      group.current.add(model)
     });
-  }, [screenImage]);
+  }, [screenImage])
 
-  const initialRotation = facingDirection === 'left' ? [0, 0, 0] : [0, -0.5, 0];
+  const initialRotation = facingDirection === 'left' ? [0, 0, 0] : [0, -0.5, 0]
 
   return (
     <group ref={group} rotation={initialRotation} scale={0.45} position={[0, -0.34, 0]} />

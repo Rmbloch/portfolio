@@ -123,38 +123,25 @@ body {
   clip-path: polygon(0 65%, 100% 20%, 100% 100%, 0 70%);
   transform: translate(0.0125em, 0.025em);
 }
-/* Glitch effect with hover */
-.hover-glitch {
+
+/* Underline hover effect */
+.hover-underline {
+  --s: 0.1em;   
+  --c: #2c4bff; 
+  
+  color: #0000;
   position: relative;
   font-weight: bold;
   font-size: clamp(16px, 2.5vw, 25px);
-  color: black;
-  transition: color 0.3s;
+  padding-bottom: var(--s);
+  background: 
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
 }
-.hover-glitch:hover {
-  text-shadow: 0.05em 0 0 #ec2225, -0.025em -0.05em 0 #313f97,
-    0.025em 0.05em 0 #50c878;
-    color: rgba(0, 194, 203, 0.2);
-}
-.hover-glitch:before,
-.hover-glitch:after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.8;
-  pointer-events: none;
-}
-.hover-glitch:hover::before {
-  animation: glitch 1050ms infinite;
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  transform: translate(-0.025em, -0.0125em);
-}
-.hover-glitch:hover::after {
-  animation: glitch 775ms infinite;
-  clip-path: polygon(0 65%, 100% 20%, 100% 100%, 0 70%);
-  transform: translate(0.0125em, 0.025em);
-}
+.hover-underline:hover {--_p: 100%}
 
 @keyframes glitch {
   0% {
