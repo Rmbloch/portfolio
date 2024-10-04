@@ -49,7 +49,7 @@ export default function Projects() {
   ]
 
   return (
-    <section className="bg-white pb-12">
+    <section id="projects" className="bg-white pb-12">
       <div className="flex justify-center pt-20">
         <h1 className="glitch" data-text="Projects">Projects</h1>
       </div>
