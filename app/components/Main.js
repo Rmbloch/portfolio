@@ -15,8 +15,6 @@ export default function Main() {
     const handleScroll = () => {
       setIsAtTop(window.scrollY === 0)
     }
-
-    // Check scroll position on mount
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)

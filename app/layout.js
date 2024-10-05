@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Contact from './components/Contact'
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <Header />
         <div className="relative z-10">
           {children}
+          <SpeedInsights />
           <footer className="text-center py-4 bg-white bg-opacity-50">
             <Contact />
             <p>&copy; 2024 Ryan Bloch</p>
